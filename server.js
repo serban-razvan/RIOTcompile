@@ -60,6 +60,6 @@ app.get('/getResult/:zipID', function(req, res) {
     console.log("trimis");
 })
 
-app.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function() {
-    console.log('Example app listening on port 3000!')
+app.listen(process.env.PORT || 80, process.env.IP || "0.0.0.0", function() {
+    console.log('Example app listening on port 80!')
 })
