@@ -31,19 +31,19 @@ app.post('/', function(req, res) {
     
     var cmd0 = 'unzip ' + zipSource + " -d " + RIOT;
     console.log(cmd0);
-    var code0 = execSync(cmd0);
+    var code = execSync(cmd0);
 
-    var cmd1 = 'cd ' + RIOT + " && make";
+    var cmd1 = 'cd ' + RIOT + " && mv Makefile.compileAway Makefile && make";
     console.log(cmd1);
-    var code = execSync(cmd1);
+    code = execSync(cmd1);
     
-    var cmd12 = "find " + RIOT + " -type f ! \\(  -name \"*.elf\" -or -name \"*.bin\" -or -name \"*.map\" -or -name \"Makefile\" \\) -delete";
-    console.log(cmd1);
-    var code = execSync(cmd12);
-    
-    var cmd2 = 'cd ' + RIOT + ' && zip -r archive.zip * && cp archive.zip ' + zipDest;
+    var cmd2 = "find " + RIOT + " -type f ! \\(  -name \"*.elf\" -or -name \"*.bin\" -or -name \"*.map\" -or -name \"Makefile\" \\) -delete";
     console.log(cmd2);
-    var code2 = execSync(cmd2);
+    code = execSync(cmd2);
+    
+    var cmd3 = 'cd ' + RIOT + ' && zip -r archive.zip * && cp archive.zip ' + zipDest;
+    console.log(cmd3);
+    code = execSync(cmd3);
     
     
     res.send(path.basename(req.files.file.path,".zip"));
